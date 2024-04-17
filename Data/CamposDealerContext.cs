@@ -15,5 +15,6 @@ namespace CamposDealer.Data
         }
 
         public DbSet<CamposDealer.Models.Cliente> Cliente { get; set; } = default!;
+        public DbSet<CamposDealer.Models.Produto> Produto { get; set; } = default!;
     }
 }
