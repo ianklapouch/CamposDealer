@@ -84,10 +84,10 @@ namespace CamposDealer.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("VlrTotalVenda")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<decimal>("VlrUnitarioVenda")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("IdVenda");
 

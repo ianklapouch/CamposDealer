@@ -1,24 +1,32 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace CamposDealer.Models;
 
-public class Venda
+public class Venda(int qtdVenda, decimal vlrUnitarioVenda)
 {
     [Key]
     public int IdVenda { get; set; }
-    public required int IdCliente { get; set; }
-    public required int IdProduto { get; set; }
+    [Required]
+    public int IdCliente { get; set; }
+    [Required]
+    public int IdProduto { get; set; }
     [Display(Name = "Quantidade do produto")]
-    public required int QtdVenda { get; set; }
+    [Required]
+    public int QtdVenda { get; set; } = qtdVenda;
+
     [Display(Name = "Valor Unitário")]
     [Column(TypeName = "decimal(18, 2)")]
-    public required decimal VlrUnitarioVenda { get; set; }
+    [Required]
+    public decimal VlrUnitarioVenda { get; set; } = vlrUnitarioVenda;
     [DataType(DataType.Date)]
     [Display(Name = "Data Venda")]
-    public required DateTime DthVenda { get; set; }
+    [Required]
+    public DateTime DthVenda { get; set; }
     [Column(TypeName = "decimal(18, 2)")]
     [Display(Name = "Valor da Venda")]
-    public required decimal VlrTotalVenda { get; set; }
+    [Required]
+    public decimal VlrTotalVenda { get; set; } = qtdVenda * vlrUnitarioVenda;
     public Cliente? Cliente { get; set; }
     public Produto? Produto { get; set; }
 }
