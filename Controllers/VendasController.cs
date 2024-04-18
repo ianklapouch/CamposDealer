@@ -93,10 +93,11 @@ namespace CamposDealer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdVenda,IdCliente,IdProduto,QtdVenda,VlrUnitarioVenda,DthVenda,VlrTotalVenda")] Venda venda)
+        public async Task<IActionResult> Create([Bind("IdVenda,IdCliente,IdProduto,QtdVenda,VlrUnitarioVenda,DthVenda")] Venda venda)
         {
             if (ModelState.IsValid)
             {
+                venda.CalcularTotalVenda();
                 _context.Add(venda);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -130,7 +131,7 @@ namespace CamposDealer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdVenda,IdCliente,IdProduto,QtdVenda,VlrUnitarioVenda,DthVenda,VlrTotalVenda")] Venda venda)
+        public async Task<IActionResult> Edit(int id, [Bind("IdVenda,IdCliente,IdProduto,QtdVenda,VlrUnitarioVenda,DthVenda")] Venda venda)
         {
             if (id != venda.IdVenda)
             {
@@ -141,6 +142,7 @@ namespace CamposDealer.Controllers
             {
                 try
                 {
+                    venda.CalcularTotalVenda();
                     _context.Update(venda);
                     await _context.SaveChangesAsync();
                 }

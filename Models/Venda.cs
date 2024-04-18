@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace CamposDealer.Models;
 
-public class Venda(int qtdVenda, decimal vlrUnitarioVenda)
+public class Venda()
 {
     [Key]
     public int IdVenda { get; set; }
@@ -13,20 +13,24 @@ public class Venda(int qtdVenda, decimal vlrUnitarioVenda)
     public int IdProduto { get; set; }
     [Display(Name = "Quantidade do produto")]
     [Required]
-    public int QtdVenda { get; set; } = qtdVenda;
+    public int QtdVenda { get; set; }
 
     [Display(Name = "Valor Unitário")]
     [Column(TypeName = "decimal(18, 2)")]
     [Required]
-    public decimal VlrUnitarioVenda { get; set; } = vlrUnitarioVenda;
+    public decimal VlrUnitarioVenda { get; set; }
     [DataType(DataType.Date)]
     [Display(Name = "Data Venda")]
     [Required]
     public DateTime DthVenda { get; set; }
     [Column(TypeName = "decimal(18, 2)")]
     [Display(Name = "Valor da Venda")]
-    [Required]
-    public decimal VlrTotalVenda { get; set; } = qtdVenda * vlrUnitarioVenda;
+    public decimal VlrTotalVenda { get; set; }
     public Cliente? Cliente { get; set; }
     public Produto? Produto { get; set; }
+
+    public void CalcularTotalVenda()
+    {
+        VlrTotalVenda = QtdVenda * VlrUnitarioVenda;
+    }
 }

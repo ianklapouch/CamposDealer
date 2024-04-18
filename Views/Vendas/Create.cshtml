@@ -4,7 +4,33 @@
     ViewData["Title"] = "Create";
 }
 
+<script>
+    $(document).ready(function () {
+        // Função para calcular o valor total da venda
+        function calcularTotal() {
+            console.log("calcularTotal")
+            // Obter os valores de QtdVenda e VlrUnitarioVenda
+            var qtdVenda = parseFloat($("#QtdVenda").val());
+            var vlrUnitarioVenda = parseFloat($("#VlrUnitarioVenda").val());
+
+            // Calcular o valor total da venda
+            var vlrTotalVenda = qtdVenda * vlrUnitarioVenda;
+
+            // Exibir o valor total da venda no campo correspondente
+            $("#VlrTotalVenda").val(vlrTotalVenda.toFixed(2));
+        }
+
+        // Associar a função de cálculo ao evento onchange dos campos QtdVenda e VlrUnitarioVenda
+        $("#QtdVenda, #VlrUnitarioVenda").on("change", function () {
+            calcularTotal();
+        });
+    });
+</script>
+
+
 <h1>Create</h1>
+
+
 
 <h4>Venda</h4>
 <hr />
@@ -35,11 +61,11 @@
                 <input asp-for="DthVenda" class="form-control" />
                 <span asp-validation-for="DthVenda" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="VlrTotalVenda" class="control-label"></label>
-                <input asp-for="VlrTotalVenda" class="form-control" />
-                <span asp-validation-for="VlrTotalVenda" class="text-danger"></span>
-            </div>
+            @* <div class="form-group">
+            <label asp-for="VlrTotalVenda" class="control-label"></label>
+            <input asp-for="VlrTotalVenda" disabled class="form-control" />
+            <span asp-validation-for="VlrTotalVenda" class="text-danger"></span>
+            </div> *@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

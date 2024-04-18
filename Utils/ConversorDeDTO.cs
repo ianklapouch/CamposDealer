@@ -102,12 +102,16 @@ namespace CamposDealer.Utils
                 int qtdVenda = int.Parse(vendaDTO.QtdVenda);
                 decimal vlrUnitarioVenda = decimal.Parse(vendaDTO.VlrUnitarioVenda);
 
-                Venda venda = new(qtdVenda, vlrUnitarioVenda)
+                Venda venda = new()
                 {
                     IdCliente = int.Parse(vendaDTO.IdCliente),
                     IdProduto = int.Parse(vendaDTO.IdProduto),
-                    DthVenda = vendaDTO.DthVenda
+                    DthVenda = vendaDTO.DthVenda,
+                    QtdVenda = qtdVenda,
+                    VlrUnitarioVenda = vlrUnitarioVenda
                 };
+
+                venda.CalcularTotalVenda();
 
                 return venda;
             }
