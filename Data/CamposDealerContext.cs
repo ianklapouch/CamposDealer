@@ -7,14 +7,23 @@ using CamposDealer.Models;
 
 namespace CamposDealer.Data
 {
-    public class CamposDealerContext : DbContext
+    public class CamposDealerContext(DbContextOptions<CamposDealerContext> options) : DbContext(options)
     {
-        public CamposDealerContext (DbContextOptions<CamposDealerContext> options)
-            : base(options)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Venda>()
+                .HasOne(v => v.Cliente)
+                .WithMany()
+                .HasForeignKey(v => v.IdCliente);
+
+            modelBuilder.Entity<Venda>()
+                .HasOne(v => v.Produto)
+                .WithMany()
+                .HasForeignKey(v => v.IdProduto);
         }
 
-        public DbSet<CamposDealer.Models.Cliente> Cliente { get; set; } = default!;
-        public DbSet<CamposDealer.Models.Produto> Produto { get; set; } = default!;
+        public DbSet<Cliente> Cliente { get; set; } = default!;
+        public DbSet<Produto> Produto { get; set; } = default!;
+        public DbSet<Venda> Venda { get; set; } = default!;
     }
 }

@@ -32,12 +32,12 @@ namespace CamposDealer.Controllers
 
             if (!string.IsNullOrEmpty(nmClient))
             {
-                clientes = clientes.Where(c => c.NmCliente!.Contains(nmClient));
+                clientes = clientes.Where(c => c.NmCliente.Contains(nmClient));
             }
 
             if (!string.IsNullOrEmpty(cidade))
             {
-                clientes = clientes.Where(c => c.Cidade!.Contains(cidade));
+                clientes = clientes.Where(c => c.Cidade.Contains(cidade));
             }
 
 
