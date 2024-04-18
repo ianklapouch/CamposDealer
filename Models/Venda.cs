@@ -21,6 +21,7 @@ public class Venda()
     public decimal VlrUnitarioVenda { get; set; }
     [DataType(DataType.Date)]
     [Display(Name = "Data Venda")]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
     [Required]
     public DateTime DthVenda { get; set; }
     [Column(TypeName = "decimal(18, 2)")]

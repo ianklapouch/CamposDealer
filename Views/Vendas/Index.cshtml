@@ -4,83 +4,126 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Vendas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Cadastrar Venda</a>
 </p>
 
 <form asp-controller="Vendas" asp-action="Index" method="get">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <p>
-        Quantidade do produto: <input type="number" name="qtdVenda" />
-        Valor Unitário: <input type="number" name="vlrUnitarioVenda" />
-        Data da Venda:<input type="date" name="dthVenda" class="form-control" />
-        Valor da Venda: <input type="number" name="vlrTotalVenda" />
-        Cliente:
-        <select class="form-control" name="idCliente" asp-items="ViewBag.IdCliente">
-            <option value="0">Todos</option>
-        </select>
-        Produto:
-        <select class="form-control" name="idProduto" asp-items="ViewBag.IdProduto">
-            <option value="0">Todos</option>
-        </select>
+    <div class="container">
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <input type="submit" value="Filter" />
-    </p>
+            <div class="form-group col-3">
+                <label class="control-label" for="idCliente">Cliente</label>
+                <select class="form-control bg-dark text-light" name="idCliente" asp-items="ViewBag.IdCliente">
+                    <option value="0">Todos</option>
+                </select>
+            </div>
+
+            <div class="form-group col-3">
+                <label class="control-label" for="idProduto">Produto</label>
+                <select class="form-control bg-dark text-light" name="idProduto" asp-items="ViewBag.IdProduto">
+                    <option value="0">Todos</option>
+                </select>
+            </div>
+
+            <div class="form-group col-3">
+                <label class="control-label" for="qtdVenda">Quantidade do produto</label>
+                <input class="form-control bg-dark text-light" type="number" name="qtdVenda" />
+            </div>
+
+            <div class="form-group col-3">
+                <label class="control-label" for="vlrUnitarioVenda">Valor Unitário</label>
+                <input class="form-control bg-dark text-light" type="number" name="vlrUnitarioVenda" />
+            </div>
+
+            <div class="form-group col-3">
+                <label class="control-label" for="vlrTotalVenda">Valor da Venda</label>
+                <input class="form-control bg-dark text-light" type="number" name="vlrTotalVenda" />
+            </div>
+
+            <div class="form-group col-3">
+                <label class="control-label" for="dthVenda">Data da Venda</label>
+                <input type="date" name="dthVenda" class="form-control bg-dark text-light" />
+            </div>
+
+        </div>
+
+        <div class="row mt-4 mb-4">
+
+            <div class="col-2">
+                <input class="btn btn-primary w-100" type="submit" value="Pesquisar" />
+            </div>
+
+        </div>
+    </div>
 </form>
 
 
-<table class="table">
+<table class="table text-light">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.QtdVenda)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VlrUnitarioVenda)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DthVenda)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VlrTotalVenda)
-            </th>
-            <th>
+            <th class="col text-center">
                 @Html.DisplayNameFor(model => model.Cliente)
             </th>
-            <th>
+
+            <th class="col text-center">
                 @Html.DisplayNameFor(model => model.Produto)
             </th>
-            <th></th>
+
+            <th class="col text-center">
+                @Html.DisplayNameFor(model => model.QtdVenda)
+            </th>
+
+            <th class="col text-center">
+                @Html.DisplayNameFor(model => model.VlrUnitarioVenda)
+            </th>
+
+            <th class="col text-center">
+                @Html.DisplayNameFor(model => model.VlrTotalVenda)
+            </th>
+
+            <th class="col text-center">
+                @Html.DisplayNameFor(model => model.DthVenda)
+            </th>
+
+            <th class="col text-center"></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.QtdVenda)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.VlrUnitarioVenda)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DthVenda)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.VlrTotalVenda)
-                </td>
-                <td>
+                <td class="col text-center">
                     @Html.DisplayFor(modelItem => item.Cliente.NmCliente)
                 </td>
-                <td>
+
+                <td class="col text-center">
                     @Html.DisplayFor(modelItem => item.Produto.DscProduto)
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdVenda">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.IdVenda">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.IdVenda">Delete</a>
+
+                <td class="col text-center">
+                    @Html.DisplayFor(modelItem => item.QtdVenda)
+                </td>
+
+                <td class="col text-center">
+                    @Html.DisplayFor(modelItem => item.VlrUnitarioVenda)
+                </td>
+
+                <td class="col text-center">
+                    @Html.DisplayFor(modelItem => item.VlrTotalVenda)
+                </td>
+
+                <td class="col text-center">
+                    @Html.DisplayFor(modelItem => item.DthVenda)
+                </td>
+
+                <td class="col text-center">
+                    <a asp-action="Edit" asp-route-id="@item.IdVenda">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdVenda">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdVenda">Excluir</a>
                 </td>
             </tr>
         }

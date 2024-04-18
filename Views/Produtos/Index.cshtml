@@ -4,27 +4,39 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Produtos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Cadastrar Produto</a>
 </p>
 
 <form asp-controller="Produtos" asp-action="Index" method="get">
-    <p>
-        Nome: <input type="text" name="dscProduto" />
-        Preço: <input type="text" name="vlrUnitario" />
-        <input type="submit" value="Filter" />
-    </p>
+    <div class="container">
+        <div class="row">
+            <div class="form-group col-3">
+                <label class="control-label" for="dscProduto">Nome</label>
+                <input class="form-control bg-dark text-light" type="text" name="dscProduto" />
+            </div>
+            <div class="form-group col-3">
+                <label class="control-label" for="vlrUnitario">Valor Unitário</label>
+                <input class="form-control bg-dark text-light" type="number" name="vlrUnitario" />
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-2">
+                <input class="btn btn-primary w-100" type="submit" value="Pesquisar" />
+            </div>
+        </div>
+    </div>
 </form>
 
-<table class="table">
+<table class="table text-light">
     <thead>
         <tr>
-            <th>
+            <th class="col text-center">
                 @Html.DisplayNameFor(model => model.DscProduto)
             </th>
-            <th>
+            <th class="col text-center">
                 @Html.DisplayNameFor(model => model.VlrUnitario)
             </th>
             <th></th>
@@ -34,16 +46,16 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td class="col text-center">
                     @Html.DisplayFor(modelItem => item.DscProduto)
                 </td>
-                <td>
+                <td class="col text-center">
                     @Html.DisplayFor(modelItem => item.VlrUnitario)
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdProduto">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.IdProduto">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.IdProduto">Delete</a>
+                <td class="col text-center">
+                    <a asp-action="Edit" asp-route-id="@item.IdProduto">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdProduto">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdProduto">Excluir</a> 
                 </td>
             </tr>
         }
